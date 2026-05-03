@@ -268,6 +268,22 @@
                     <div class="absolute inset-0 rounded-t-lg lg:rounded-t-none lg:rounded-r-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"></div>
                 </div>
             </main>
+
+            <section class="mt-8 w-full max-w-[335px] lg:max-w-4xl bg-white dark:bg-[#161615] p-6 rounded-sm shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)]">
+                <h2 class="mb-4 text-base font-medium">Daftar Tugas</h2>
+                <ul>
+                    @foreach($tasks as $task)
+                        <li class="mb-3 flex items-center justify-between gap-3">
+                            <span>{{ $task->title }}</span>
+                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="px-3 py-1 text-sm bg-[#1b1b18] text-white rounded-sm">Hapus</button>
+                            </form>
+                        </li>
+                    @endforeach
+                </ul>
+            </section>
         </div>
 
         @if (Route::has('login'))
