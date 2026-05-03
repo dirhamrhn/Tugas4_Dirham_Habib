@@ -16,7 +16,11 @@ class TaskController extends Controller
             'title' => 'required'
         ]);
 
-        return Task::create($request->all());
+        // Simpan data ke database (hilangkan kata 'return' di depannya)
+        Task::create($request->all());
+
+        // Redirect/kembalikan user ke halaman utama dengan pesan sukses
+        return redirect()->back()->with('success', 'Tugas berhasil ditambahkan!');
     }
 
     // ==========================================
