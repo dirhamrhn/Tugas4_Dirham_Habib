@@ -3,24 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Task;
 
 class TaskController extends Controller
 {
-    // Fitur READ [GET] - Dikerjakan olehmu
+    // ==========================================
+    // FITUR CREATE (Dikerjakan oleh Temanmu)
+    // ==========================================
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required'
+        ]);
+
+        return Task::create($request->all());
+    }
+
+    // ==========================================
+    // FITUR READ & DELETE (Dikerjakan olehmu)
+    // ==========================================
+    
+    // Fungsi untuk READ [GET]
     public function index()
     {
         // Mengambil semua data dari database
-        $tasks = \App\Models\Task::all(); 
+        $tasks = Task::all(); 
         
         // Melempar data ke tampilan (view)
         return view('welcome', compact('tasks')); 
     }
 
-    // Fitur DELETE [DELETE] - Dikerjakan olehmu
+    // Fungsi untuk DELETE [DELETE]
     public function destroy($id)
     {
         // Mencari task lalu menghapusnya
-        $task = \App\Models\Task::findOrFail($id);
+        $task = Task::findOrFail($id);
         $task->delete();
 
         // Mengembalikan user ke halaman utama dengan pesan sukses
