@@ -6,9 +6,7 @@ use App\Http\Controllers\TaskController;
 // ==========================================
 // Halaman Utama
 // ==========================================
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [TaskController::class, 'index']);
 
 // ==========================================
 // Rute untuk Fitur CREATE (Dikerjakan Temanmu)
